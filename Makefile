@@ -17,4 +17,7 @@ sqlc:
 test:
 	@go test -v -cover ./...
 
-.PHONY: postgres dropposgres migrateup migratedown sqlc
+fmt:
+	@go fmt ./...
+
+.PHONY: postgres dropposgres migrateup migratedown sqlc fmt

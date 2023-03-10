@@ -60,8 +60,8 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParam) (Transf
 	err = store.execTx(context.Background(), func(q *Queries) error {
 		result.Transfer, err = q.CreateTransfer(ctx, CreateTransferParams{
 			FromAccountID: arg.FromAccountID,
-			ToAccountID: arg.ToAccountID,
-			Amount: arg.Amount,
+			ToAccountID:   arg.ToAccountID,
+			Amount:        arg.Amount,
 		})
 		if err != nil {
 			return err
@@ -69,7 +69,7 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParam) (Transf
 
 		result.FromEntry, err = q.CreateEntry(ctx, CreateEntryParams{
 			AccountID: arg.FromAccountID,
-			Amount: -arg.Amount,
+			Amount:    -arg.Amount,
 		})
 
 		if err != nil {
@@ -78,7 +78,7 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParam) (Transf
 
 		result.ToEntry, err = q.CreateEntry(ctx, CreateEntryParams{
 			AccountID: arg.ToAccountID,
-			Amount: arg.Amount,
+			Amount:    arg.Amount,
 		})
 
 		if err != nil {
@@ -97,7 +97,6 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParam) (Transf
 
 	return result, err
 }
-
 
 func addMoney(
 	ctx context.Context,
