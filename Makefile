@@ -20,4 +20,7 @@ test:
 fmt:
 	@go fmt ./...
 
-.PHONY: postgres dropposgres migrateup migratedown sqlc fmt
+server:
+	@go run main.go
+
+.PHONY: postgres dropposgres migrateup migratedown sqlc fmt server
