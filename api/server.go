@@ -6,11 +6,11 @@ import (
 )
 
 type Server struct {
-	store *db.Store
+	store  db.Store
 	router *gin.Engine
 }
 
-func NewServer(store *db.Store) *Server {
+func NewServer(store db.Store) *Server {
 	server := &Server{
 		store: store,
 	}
@@ -20,7 +20,6 @@ func NewServer(store *db.Store) *Server {
 	router.GET("/accounts/:id", server.getAccount)
 	router.GET("/accounts", server.listAccount)
 
-
 	server.router = router
 	return server
 }
@@ -28,7 +27,6 @@ func NewServer(store *db.Store) *Server {
 func (server *Server) Start(address string) error {
 	return server.router.Run(address)
 }
-
 
 func errorResponse(err error) gin.H {
 	return gin.H{

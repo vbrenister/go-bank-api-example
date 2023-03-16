@@ -23,4 +23,7 @@ fmt:
 server:
 	@go run main.go
 
-.PHONY: postgres dropposgres migrateup migratedown sqlc fmt server
+mock:
+	@mockgen -package mockdb -build_flags=--mod=mod -destination db/mock/store.go github.com/vbrenister/go-bank-api-example/db/sqlc Store
+
+.PHONY: postgres dropposgres migrateup migratedown sqlc fmt server mock

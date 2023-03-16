@@ -10,8 +10,6 @@ import (
 	"github.com/vbrenister/go-bank-api-example/util"
 )
 
-
-
 func main() {
 	config, err := util.LoadConfig(".")
 	if err != nil {
