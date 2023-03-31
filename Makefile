@@ -26,4 +26,11 @@ server:
 mock:
 	@mockgen -package mockdb -build_flags=--mod=mod -destination db/mock/store.go github.com/vbrenister/go-bank-api-example/db/sqlc Store
 
-.PHONY: postgres dropposgres migrateup migratedown sqlc fmt server mock
+proto:
+	@rm -f pb/*.go
+	@protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative --go-grpc_out=pb --go-grpc_opt=paths=source_relative proto/*.proto
+
+evans: 
+	@evans --host localhost --port 4000 -r repl
+
+.PHONY: postgres dropposgres migrateup migratedown sqlc fmt server mock proto evans
